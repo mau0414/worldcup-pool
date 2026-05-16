@@ -44,8 +44,6 @@ model Pool {
 
   owner        User         @relation(fields: [ownerId], references: [id])
   members      PoolMember[]
-  predictions  Prediction[]
-  pointEntries PointEntry[]
 }
 
 model PoolMember {
@@ -67,6 +65,7 @@ model Match {
   teamB         String
   matchDate     DateTime
   group         String
+  round         Int
   scoreA        Int?
   scoreB        Int?
   status        String @default("bet")
@@ -79,7 +78,7 @@ model Prediction {
   id          String   @id @default(uuid())
   userId      String
   matchId     String
-  poolId      String
+  round       Int
   predictedA  Int
   predictedB  Int
   createdAt   DateTime @default(now())
@@ -87,25 +86,22 @@ model Prediction {
 
   user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
   match Match @relation(fields: [matchId], references: [id], onDelete: Cascade)
-  pool  Pool  @relation(fields: [poolId], references: [id], onDelete: Cascade)
 
-  @@unique([userId, matchId, poolId])
+  @@unique([userId, matchId])
 }
 
 model PointEntry {
   id        String   @id @default(uuid())
   userId    String
   matchId   String
-  poolId    String
   points    Int
   type      String   // "exact" | "outcome" | "none"
   createdAt DateTime @default(now())
 
   user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
   match Match @relation(fields: [matchId], references: [id], onDelete: Cascade)
-  pool  Pool  @relation(fields: [poolId], references: [id], onDelete: Cascade)
 
-  @@unique([userId, matchId, poolId])
+  @@unique([userId, matchId])
 }
 
 model Subscription {
