@@ -114,3 +114,10 @@ model Subscription {
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
+
+model CurrentRound {
+  round          Int @id
+  firstMatchDate DateTime
+  lastMatchDate  DateTime
+  status         String @default("future") // "open" | "closed" | "future" | "finished"
+}
