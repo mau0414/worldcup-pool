@@ -68,7 +68,7 @@ model Match {
   round         Int
   scoreA        Int?
   scoreB        Int?
-  status        String @default("bet")
+  status        String @default("bet") // "BET" | "FINISHED"
 
   predictions   Prediction[]
   pointEntries  PointEntry[]

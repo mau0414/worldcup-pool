@@ -16,16 +16,16 @@ async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     const form = e.currentTarget
 
     const result = await signIn("credentials", {
-    email: (form.elements.namedItem("email") as HTMLInputElement).value,
-    password: (form.elements.namedItem("password") as HTMLInputElement).value,
-    redirect: false,
+        email: (form.elements.namedItem("email") as HTMLInputElement).value,
+        password: (form.elements.namedItem("password") as HTMLInputElement).value,
+        redirect: false,
     })
 
     setLoading(false)
     if (result?.ok) {
-    router.push("/dashboard")
+        router.push("/dashboard")
     } else {
-    setError("Invalid email or password")
+        setError("Invalid email or password")
     }
 }
 
