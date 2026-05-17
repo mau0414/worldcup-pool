@@ -7,29 +7,47 @@ import { POOL_LIMITS } from "@/lib/config"
 export async function POST(req: Request) {
 
     const session = await auth();
-    const { round, matches } = await req.json()
+    const { matches } = await req.json()
+
+    console.log("Input = ", matches)
 
     if (!session?.user?.id) {
         return Response.json({ error: "Unauthorized" }, { status: 401 })
     }
 
     const userId = session.user.id
-    const user   = await db.user.findUnique({ where: { id: userId } });
+    const user = await db.user.findUnique({ where: { id: userId } });
 
     if (!user) {
         return Response.json({ error: "User not found" }, { status: 404 })
     }
 
-    const predictions = []
-    for (const match of matches) {
-        const prediction = { userId, matchId: match.id, predictedA: match.predictedA, predictedB: match.predictedB,round }
-        predictions.push(prediction)
-    }
+    const predictions = matches.map((match: any) => ({
+        userId,
+        matchId: match.matchId,
+        predictedA: match.predictedA,
+        predictedB: match.predictedB,
+        round: match.round,
+    }))
 
-
-    const persistedPredictions = await db.prediction.createMany({data: predictions})
-
-    console.log("vai responder!")    
+    const persistedPredictions = await db.$transaction(
+        predictions.map((prediction: any) =>
+            db.prediction.upsert({
+                where: {
+                    userId_matchId: {        // <- your @@unique constraint
+                        userId: prediction.userId,
+                        matchId: prediction.matchId,
+                    },
+                },
+                update: {
+                    predictedA: prediction.predictedA,
+                    predictedB: prediction.predictedB,
+                    round: prediction.round,
+                },
+                create: prediction,
+            })
+        )
+    )
 
     return NextResponse.json(
         { predictions: persistedPredictions },

@@ -8,105 +8,111 @@ const prisma = new PrismaClient({ adapter })
 
 const matches = [
     // ─── GROUP A ───
-    { teamA: "Mexico", teamB: "South Africa", matchDate: new Date("2026-06-11T19:00:00Z"), group: "A" },
-    { teamA: "South Korea", teamB: "Czechia", matchDate: new Date("2026-06-12T02:00:00Z"), group: "A" },
-    { teamA: "Czechia", teamB: "South Africa", matchDate: new Date("2026-06-18T17:00:00Z"), group: "A" },
-    { teamA: "Mexico", teamB: "South Korea", matchDate: new Date("2026-06-19T03:00:00Z"), group: "A" },
-    { teamA: "Czechia", teamB: "Mexico", matchDate: new Date("2026-06-25T03:00:00Z"), group: "A" },
-    { teamA: "South Africa", teamB: "South Korea", matchDate: new Date("2026-06-25T03:00:00Z"), group: "A" },
+    { teamA: "México", teamB: "África do Sul", matchDate: new Date("2026-06-11T19:00:00Z"), group: "A", round: 1 },
+    { teamA: "Coreia do Sul", teamB: "Tchéquia", matchDate: new Date("2026-06-12T02:00:00Z"), group: "A", round: 1 },
+    { teamA: "Tchéquia", teamB: "África do Sul", matchDate: new Date("2026-06-18T17:00:00Z"), group: "A", round: 2 },
+    { teamA: "México", teamB: "Coreia do Sul", matchDate: new Date("2026-06-19T03:00:00Z"), group: "A", round: 2 },
+    { teamA: "Tchéquia", teamB: "México", matchDate: new Date("2026-06-25T03:00:00Z"), group: "A", round: 3 },
+    { teamA: "África do Sul", teamB: "Coreia do Sul", matchDate: new Date("2026-06-25T03:00:00Z"), group: "A", round: 3 },
 
     // ─── GROUP B ───
-    { teamA: "Canada", teamB: "Bosnia and Herzegovina", matchDate: new Date("2026-06-12T19:00:00Z"), group: "B" },
-    { teamA: "Qatar", teamB: "Switzerland", matchDate: new Date("2026-06-13T19:00:00Z"), group: "B" },
-    { teamA: "Switzerland", teamB: "Bosnia and Herzegovina", matchDate: new Date("2026-06-18T23:00:00Z"), group: "B" },
-    { teamA: "Canada", teamB: "Qatar", matchDate: new Date("2026-06-19T02:00:00Z"), group: "B" },
-    { teamA: "Switzerland", teamB: "Canada", matchDate: new Date("2026-06-24T23:00:00Z"), group: "B" },
-    { teamA: "Bosnia and Herzegovina", teamB: "Qatar", matchDate: new Date("2026-06-24T23:00:00Z"), group: "B" },
+    { teamA: "Canadá", teamB: "Bósnia e Herzegovina", matchDate: new Date("2026-06-12T19:00:00Z"), group: "B", round: 1 },
+    { teamA: "Catar", teamB: "Suíça", matchDate: new Date("2026-06-13T19:00:00Z"), group: "B", round: 1 },
+    { teamA: "Suíça", teamB: "Bósnia e Herzegovina", matchDate: new Date("2026-06-18T23:00:00Z"), group: "B", round: 2 },
+    { teamA: "Canadá", teamB: "Catar", matchDate: new Date("2026-06-19T02:00:00Z"), group: "B", round: 2 },
+    { teamA: "Suíça", teamB: "Canadá", matchDate: new Date("2026-06-24T23:00:00Z"), group: "B", round: 3 },
+    { teamA: "Bósnia e Herzegovina", teamB: "Catar", matchDate: new Date("2026-06-24T23:00:00Z"), group: "B", round: 3 },
 
     // ─── GROUP C ───
-    { teamA: "Brazil", teamB: "Morocco", matchDate: new Date("2026-06-13T23:00:00Z"), group: "C" },
-    { teamA: "Haiti", teamB: "Scotland", matchDate: new Date("2026-06-14T01:00:00Z"), group: "C" },
-    { teamA: "Scotland", teamB: "Morocco", matchDate: new Date("2026-06-19T23:00:00Z"), group: "C" },
-    { teamA: "Brazil", teamB: "Haiti", matchDate: new Date("2026-06-20T02:00:00Z"), group: "C" },
-    { teamA: "Scotland", teamB: "Brazil", matchDate: new Date("2026-06-24T23:00:00Z"), group: "C" },
-    { teamA: "Morocco", teamB: "Haiti", matchDate: new Date("2026-06-24T23:00:00Z"), group: "C" },
+    { teamA: "Brasil", teamB: "Marrocos", matchDate: new Date("2026-06-13T23:00:00Z"), group: "C", round: 1 },
+    { teamA: "Haiti", teamB: "Escócia", matchDate: new Date("2026-06-14T01:00:00Z"), group: "C", round: 1 },
+    { teamA: "Escócia", teamB: "Marrocos", matchDate: new Date("2026-06-19T23:00:00Z"), group: "C", round: 2 },
+    { teamA: "Brasil", teamB: "Haiti", matchDate: new Date("2026-06-20T02:00:00Z"), group: "C", round: 2 },
+    { teamA: "Escócia", teamB: "Brasil", matchDate: new Date("2026-06-24T23:00:00Z"), group: "C", round: 3 },
+    { teamA: "Marrocos", teamB: "Haiti", matchDate: new Date("2026-06-24T23:00:00Z"), group: "C", round: 3 },
 
     // ─── GROUP D ───
-    { teamA: "United States", teamB: "Paraguay", matchDate: new Date("2026-06-13T01:00:00Z"), group: "D" },
-    { teamA: "Australia", teamB: "Turkiye", matchDate: new Date("2026-06-14T04:00:00Z"), group: "D" },
-    { teamA: "United States", teamB: "Australia", matchDate: new Date("2026-06-19T23:00:00Z"), group: "D" },
-    { teamA: "Turkiye", teamB: "Paraguay", matchDate: new Date("2026-06-20T08:00:00Z"), group: "D" },
-    { teamA: "Turkiye", teamB: "United States", matchDate: new Date("2026-06-26T06:00:00Z"), group: "D" },
-    { teamA: "Paraguay", teamB: "Australia", matchDate: new Date("2026-06-26T06:00:00Z"), group: "D" },
+    { teamA: "Estados Unidos", teamB: "Paraguai", matchDate: new Date("2026-06-13T01:00:00Z"), group: "D", round: 1 },
+    { teamA: "Austrália", teamB: "Turquia", matchDate: new Date("2026-06-14T04:00:00Z"), group: "D", round: 1 },
+    { teamA: "Estados Unidos", teamB: "Austrália", matchDate: new Date("2026-06-19T23:00:00Z"), group: "D", round: 2 },
+    { teamA: "Turquia", teamB: "Paraguai", matchDate: new Date("2026-06-20T08:00:00Z"), group: "D", round: 2 },
+    { teamA: "Turquia", teamB: "Estados Unidos", matchDate: new Date("2026-06-26T06:00:00Z"), group: "D", round: 3 },
+    { teamA: "Paraguai", teamB: "Austrália", matchDate: new Date("2026-06-26T06:00:00Z"), group: "D", round: 3 },
 
     // ─── GROUP E ───
-    { teamA: "Germany", teamB: "Curacao", matchDate: new Date("2026-06-14T18:00:00Z"), group: "E" },
-    { teamA: "Ivory Coast", teamB: "Ecuador", matchDate: new Date("2026-06-15T00:00:00Z"), group: "E" },
-    { teamA: "Germany", teamB: "Ivory Coast", matchDate: new Date("2026-06-20T21:00:00Z"), group: "E" },
-    { teamA: "Ecuador", teamB: "Curacao", matchDate: new Date("2026-06-21T04:00:00Z"), group: "E" },
-    { teamA: "Ecuador", teamB: "Germany", matchDate: new Date("2026-06-25T21:00:00Z"), group: "E" },
-    { teamA: "Curacao", teamB: "Ivory Coast", matchDate: new Date("2026-06-25T21:00:00Z"), group: "E" },
+    { teamA: "Alemanha", teamB: "Curaçao", matchDate: new Date("2026-06-14T18:00:00Z"), group: "E", round: 1 },
+    { teamA: "Costa do Marfim", teamB: "Equador", matchDate: new Date("2026-06-15T00:00:00Z"), group: "E", round: 1 },
+    { teamA: "Alemanha", teamB: "Costa do Marfim", matchDate: new Date("2026-06-20T21:00:00Z"), group: "E", round: 2 },
+    { teamA: "Equador", teamB: "Curaçao", matchDate: new Date("2026-06-21T04:00:00Z"), group: "E", round: 2 },
+    { teamA: "Equador", teamB: "Alemanha", matchDate: new Date("2026-06-25T21:00:00Z"), group: "E", round: 3 },
+    { teamA: "Curaçao", teamB: "Costa do Marfim", matchDate: new Date("2026-06-25T21:00:00Z"), group: "E", round: 3 },
 
     // ─── GROUP F ───
-    { teamA: "Netherlands", teamB: "Japan", matchDate: new Date("2026-06-14T21:00:00Z"), group: "F" },
-    { teamA: "Sweden", teamB: "Tunisia", matchDate: new Date("2026-06-15T04:00:00Z"), group: "F" },
-    { teamA: "Netherlands", teamB: "Sweden", matchDate: new Date("2026-06-20T19:00:00Z"), group: "F" },
-    { teamA: "Tunisia", teamB: "Japan", matchDate: new Date("2026-06-21T06:00:00Z"), group: "F" },
-    { teamA: "Japan", teamB: "Sweden", matchDate: new Date("2026-06-26T01:00:00Z"), group: "F" },
-    { teamA: "Tunisia", teamB: "Netherlands", matchDate: new Date("2026-06-26T01:00:00Z"), group: "F" },
+    { teamA: "Países Baixos", teamB: "Japão", matchDate: new Date("2026-06-14T21:00:00Z"), group: "F", round: 1 },
+    { teamA: "Suécia", teamB: "Tunísia", matchDate: new Date("2026-06-15T04:00:00Z"), group: "F", round: 1 },
+    { teamA: "Países Baixos", teamB: "Suécia", matchDate: new Date("2026-06-20T19:00:00Z"), group: "F", round: 2 },
+    { teamA: "Tunísia", teamB: "Japão", matchDate: new Date("2026-06-21T06:00:00Z"), group: "F", round: 2 },
+    { teamA: "Japão", teamB: "Suécia", matchDate: new Date("2026-06-26T01:00:00Z"), group: "F", round: 3 },
+    { teamA: "Tunísia", teamB: "Países Baixos", matchDate: new Date("2026-06-26T01:00:00Z"), group: "F", round: 3 },
 
     // ─── GROUP G ───
-    { teamA: "Belgium", teamB: "Egypt", matchDate: new Date("2026-06-15T23:00:00Z"), group: "G" },
-    { teamA: "Iran", teamB: "New Zealand", matchDate: new Date("2026-06-16T05:00:00Z"), group: "G" },
-    { teamA: "Belgium", teamB: "Iran", matchDate: new Date("2026-06-21T23:00:00Z"), group: "G" },
-    { teamA: "New Zealand", teamB: "Egypt", matchDate: new Date("2026-06-22T05:00:00Z"), group: "G" },
-    { teamA: "Egypt", teamB: "Iran", matchDate: new Date("2026-06-27T07:00:00Z"), group: "G" },
-    { teamA: "New Zealand", teamB: "Belgium", matchDate: new Date("2026-06-27T07:00:00Z"), group: "G" },
+    { teamA: "Bélgica", teamB: "Egito", matchDate: new Date("2026-06-15T23:00:00Z"), group: "G", round: 1 },
+    { teamA: "Irã", teamB: "Nova Zelândia", matchDate: new Date("2026-06-16T05:00:00Z"), group: "G", round: 1 },
+    { teamA: "Bélgica", teamB: "Irã", matchDate: new Date("2026-06-21T23:00:00Z"), group: "G", round: 2 },
+    { teamA: "Nova Zelândia", teamB: "Egito", matchDate: new Date("2026-06-22T05:00:00Z"), group: "G", round: 2 },
+    { teamA: "Egito", teamB: "Irã", matchDate: new Date("2026-06-27T07:00:00Z"), group: "G", round: 3 },
+    { teamA: "Nova Zelândia", teamB: "Bélgica", matchDate: new Date("2026-06-27T07:00:00Z"), group: "G", round: 3 },
 
     // ─── GROUP H ───
-    { teamA: "Spain", teamB: "Cape Verde", matchDate: new Date("2026-06-15T17:00:00Z"), group: "H" },
-    { teamA: "Saudi Arabia", teamB: "Uruguay", matchDate: new Date("2026-06-15T23:00:00Z"), group: "H" },
-    { teamA: "Spain", teamB: "Saudi Arabia", matchDate: new Date("2026-06-21T17:00:00Z"), group: "H" },
-    { teamA: "Uruguay", teamB: "Cape Verde", matchDate: new Date("2026-06-21T23:00:00Z"), group: "H" },
-    { teamA: "Cape Verde", teamB: "Saudi Arabia", matchDate: new Date("2026-06-27T02:00:00Z"), group: "H" },
-    { teamA: "Uruguay", teamB: "Spain", matchDate: new Date("2026-06-27T02:00:00Z"), group: "H" },
+    { teamA: "Espanha", teamB: "Cabo Verde", matchDate: new Date("2026-06-15T17:00:00Z"), group: "H", round: 1 },
+    { teamA: "Arábia Saudita", teamB: "Uruguai", matchDate: new Date("2026-06-15T23:00:00Z"), group: "H", round: 1 },
+    { teamA: "Espanha", teamB: "Arábia Saudita", matchDate: new Date("2026-06-21T17:00:00Z"), group: "H", round: 2 },
+    { teamA: "Uruguai", teamB: "Cabo Verde", matchDate: new Date("2026-06-21T23:00:00Z"), group: "H", round: 2 },
+    { teamA: "Cabo Verde", teamB: "Arábia Saudita", matchDate: new Date("2026-06-27T02:00:00Z"), group: "H", round: 3 },
+    { teamA: "Uruguai", teamB: "Espanha", matchDate: new Date("2026-06-27T02:00:00Z"), group: "H", round: 3 },
 
     // ─── GROUP I ───
-    { teamA: "France", teamB: "Senegal", matchDate: new Date("2026-06-16T20:00:00Z"), group: "I" },
-    { teamA: "Iraq", teamB: "Norway", matchDate: new Date("2026-06-16T23:00:00Z"), group: "I" },
-    { teamA: "France", teamB: "Iraq", matchDate: new Date("2026-06-22T22:00:00Z"), group: "I" },
-    { teamA: "Norway", teamB: "Senegal", matchDate: new Date("2026-06-23T01:00:00Z"), group: "I" },
-    { teamA: "Norway", teamB: "France", matchDate: new Date("2026-06-26T20:00:00Z"), group: "I" },
-    { teamA: "Senegal", teamB: "Iraq", matchDate: new Date("2026-06-26T20:00:00Z"), group: "I" },
+    { teamA: "França", teamB: "Senegal", matchDate: new Date("2026-06-16T20:00:00Z"), group: "I", round: 1 },
+    { teamA: "Iraque", teamB: "Noruega", matchDate: new Date("2026-06-16T23:00:00Z"), group: "I", round: 1 },
+    { teamA: "França", teamB: "Iraque", matchDate: new Date("2026-06-22T22:00:00Z"), group: "I", round: 2 },
+    { teamA: "Noruega", teamB: "Senegal", matchDate: new Date("2026-06-23T01:00:00Z"), group: "I", round: 2 },
+    { teamA: "Noruega", teamB: "França", matchDate: new Date("2026-06-26T20:00:00Z"), group: "I", round: 3 },
+    { teamA: "Senegal", teamB: "Iraque", matchDate: new Date("2026-06-26T20:00:00Z"), group: "I", round: 3 },
 
     // ─── GROUP J ───
-    { teamA: "Argentina", teamB: "Algeria", matchDate: new Date("2026-06-17T03:00:00Z"), group: "J" },
-    { teamA: "Austria", teamB: "Jordan", matchDate: new Date("2026-06-17T08:00:00Z"), group: "J" },
-    { teamA: "Argentina", teamB: "Austria", matchDate: new Date("2026-06-22T19:00:00Z"), group: "J" },
-    { teamA: "Jordan", teamB: "Algeria", matchDate: new Date("2026-06-23T07:00:00Z"), group: "J" },
-    { teamA: "Algeria", teamB: "Austria", matchDate: new Date("2026-06-28T04:00:00Z"), group: "J" },
-    { teamA: "Jordan", teamB: "Argentina", matchDate: new Date("2026-06-28T04:00:00Z"), group: "J" },
+    { teamA: "Argentina", teamB: "Argélia", matchDate: new Date("2026-06-17T03:00:00Z"), group: "J", round: 1 },
+    { teamA: "Áustria", teamB: "Jordânia", matchDate: new Date("2026-06-17T08:00:00Z"), group: "J", round: 1 },
+    { teamA: "Argentina", teamB: "Áustria", matchDate: new Date("2026-06-22T19:00:00Z"), group: "J", round: 2 },
+    { teamA: "Jordânia", teamB: "Argélia", matchDate: new Date("2026-06-23T07:00:00Z"), group: "J", round: 2 },
+    { teamA: "Argélia", teamB: "Áustria", matchDate: new Date("2026-06-28T04:00:00Z"), group: "J", round: 3 },
+    { teamA: "Jordânia", teamB: "Argentina", matchDate: new Date("2026-06-28T04:00:00Z"), group: "J", round: 3 },
 
     // ─── GROUP K ───
-    { teamA: "Portugal", teamB: "DR Congo", matchDate: new Date("2026-06-17T19:00:00Z"), group: "K" },
-    { teamA: "Uzbekistan", teamB: "Colombia", matchDate: new Date("2026-06-18T04:00:00Z"), group: "K" },
-    { teamA: "Portugal", teamB: "Uzbekistan", matchDate: new Date("2026-06-23T19:00:00Z"), group: "K" },
-    { teamA: "Colombia", teamB: "DR Congo", matchDate: new Date("2026-06-24T04:00:00Z"), group: "K" },
-    { teamA: "Colombia", teamB: "Portugal", matchDate: new Date("2026-06-27T23:30:00Z"), group: "K" },
-    { teamA: "DR Congo", teamB: "Uzbekistan", matchDate: new Date("2026-06-27T23:30:00Z"), group: "K" },
+    { teamA: "Portugal", teamB: "República Democrática do Congo", matchDate: new Date("2026-06-17T19:00:00Z"), group: "K", round: 1 },
+    { teamA: "Uzbequistão", teamB: "Colômbia", matchDate: new Date("2026-06-18T04:00:00Z"), group: "K", round: 1 },
+    { teamA: "Portugal", teamB: "Uzbequistão", matchDate: new Date("2026-06-23T19:00:00Z"), group: "K", round: 2 },
+    { teamA: "Colômbia", teamB: "República Democrática do Congo", matchDate: new Date("2026-06-24T04:00:00Z"), group: "K", round: 2 },
+    { teamA: "Colômbia", teamB: "Portugal", matchDate: new Date("2026-06-27T23:30:00Z"), group: "K", round: 3 },
+    { teamA: "República Democrática do Congo", teamB: "Uzbequistão", matchDate: new Date("2026-06-27T23:30:00Z"), group: "K", round: 3 },
 
     // ─── GROUP L ───
-    { teamA: "England", teamB: "Croatia", matchDate: new Date("2026-06-17T22:00:00Z"), group: "L" },
-    { teamA: "Ghana", teamB: "Panama", matchDate: new Date("2026-06-18T00:00:00Z"), group: "L" },
-    { teamA: "England", teamB: "Ghana", matchDate: new Date("2026-06-23T21:00:00Z"), group: "L" },
-    { teamA: "Panama", teamB: "Croatia", matchDate: new Date("2026-06-24T00:00:00Z"), group: "L" },
-    { teamA: "Panama", teamB: "England", matchDate: new Date("2026-06-27T22:00:00Z"), group: "L" },
-    { teamA: "Croatia", teamB: "Ghana", matchDate: new Date("2026-06-27T22:00:00Z"), group: "L" },
+    { teamA: "Inglaterra", teamB: "Croácia", matchDate: new Date("2026-06-17T22:00:00Z"), group: "L", round: 1 },
+    { teamA: "Gana", teamB: "Panamá", matchDate: new Date("2026-06-18T00:00:00Z"), group: "L", round: 1 },
+    { teamA: "Inglaterra", teamB: "Gana", matchDate: new Date("2026-06-23T21:00:00Z"), group: "L", round: 2 },
+    { teamA: "Panamá", teamB: "Croácia", matchDate: new Date("2026-06-24T00:00:00Z"), group: "L", round: 2 },
+    { teamA: "Panamá", teamB: "Inglaterra", matchDate: new Date("2026-06-27T22:00:00Z"), group: "L", round: 3 },
+    { teamA: "Croácia", teamB: "Gana", matchDate: new Date("2026-06-27T22:00:00Z"), group: "L", round: 3 },
     ]
 
+const currentRound = {round: 1, firstMatchDate: new Date("2026-06-11T19:00:00Z"), lastMatchDate: new Date("2026-06-18T04:00:00Z"), status: "open"  }
+
 async function main() {
-    await prisma.match.createMany({
-        data: matches
+    // await prisma.match.createMany({
+    //     data: matches
+    // })
+
+    await prisma.currentRound.create({
+        data: currentRound
     })
 }
 
