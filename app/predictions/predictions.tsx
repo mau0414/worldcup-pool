@@ -646,7 +646,7 @@ return (
         }}
     >
         <p className="eyebrow" style={{ marginBottom: 10 }}>
-        → FIFA World Cup 2026
+        → Copa do Mundo 2026
         </p>
         <h1
         style={{
