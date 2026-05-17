@@ -3,7 +3,7 @@ import { withAdminGuard } from '@/lib/adminGuard';
 import { db } from '@/lib/db';
 
 function calculatePoints(prediction: { predictedA: number; predictedB: number }, result: { teamAScore: number; teamBScore: number }) {
-    const predictedDiff = prediction.predictedA - prediction.predictedA;
+    const predictedDiff = prediction.predictedA - prediction.predictedB;
     const actualDiff = result.teamAScore - result.teamBScore;
     const predictedOutcome = (predictedDiff > 0) ? 'A' : (predictedDiff < 0) ? 'B' : 'DRAW';
     const actualOutcome = (actualDiff > 0) ? 'A' : (actualDiff < 0) ? 'B' : 'DRAW';
@@ -22,10 +22,10 @@ function calculatePoints(prediction: { predictedA: number; predictedB: number },
     return {points: 0, outcome: 'none'}; 
 }   
 
-async function postResult(req: NextRequest, { params }: { params: { matchId: string } }) {
+async function postResult(req: NextRequest, { params }: { params: Promise<{ matchId: string }> }) {
 
     const { teamAScore, teamBScore } = await req.json();
-    const { matchId } = params;
+    const { matchId } = await params;
 
     // 1. Check game exists and isn't already scored
     const game = await db.match.findUnique({ where: { id: matchId } });
@@ -47,8 +47,8 @@ async function postResult(req: NextRequest, { params }: { params: { matchId: str
         const pointEntries = predictions.map((prediction) => {
             const { points, outcome } = calculatePoints(prediction, { teamAScore, teamBScore });
 
+            console.log("points", points, "outcome", outcome);  
             return {
-                predictionId: prediction.id,
                 userId: prediction.userId,
                 matchId,
                 points,
